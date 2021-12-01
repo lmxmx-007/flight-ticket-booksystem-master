@@ -1,5 +1,7 @@
 [详细介绍 - 数据库课程设计 - 机票预订系统 - 简书](http://www.jianshu.com/p/60a392df9f03)
 
+开发时间2021年12月
+
 注册和登录界面都学习这位仁兄的 [buckyroberts-Viberr](https://github.com/buckyroberts/Viberr)
 
 ## 五、界面设计
