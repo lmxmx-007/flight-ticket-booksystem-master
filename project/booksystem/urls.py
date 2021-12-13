@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'^user_info/$', views.user_info, name='user_info'),  # 用户信息
     url(r'^book/flight/(?P<flight_id>[0-9]+)/$', views.book_ticket, name='book_ticket'),  # 订票
     url(r'^refund/flight/(?P<flight_id>[0-9]+)/$', views.refund_ticket, name='refund_ticket'),  # 退票
-    url(r'^admin/$', views.admin, name='user_admin')
+    url(r'^admin/$', views.admin, name='user_admin'),
+    url(r'^tourgroup/$',views.tourgroup,name='tourgroup')
 ]

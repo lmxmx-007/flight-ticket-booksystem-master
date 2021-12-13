@@ -207,10 +207,11 @@ def login_user(request):
                     if user.pid==1:
                         return render(request, 'booksystem/result.html', context)
                     else:
-                        # context = {
-                        #     'username': "旅行团"
-                        # }
-                        return render(request, 'booksystem/result.html', context)
+                        context = {
+                            'username': "旅行团"
+                        }
+                        # print("旅行团")
+                        return render(request, 'booksystem/tourgroup.html')
             else:
                 return render(request, 'booksystem/login.html', {'error_message': 'Your account has been disabled'})
         else:  # 登录失败
@@ -222,7 +223,6 @@ def login_user(request):
 # 注册
 def register(request):
     form = UserForm(request.POST or None)
-
     if form.is_valid():
         user = form.save(commit=False)
         username = form.cleaned_data['username']
@@ -239,9 +239,9 @@ def register(request):
                 if user.pid == 1:
                     return render(request, 'booksystem/result.html', context) # 注册成功直接render result页面
                 else:
-                    # context = {
-                    #     'username': "旅行团"
-                    # }
+                    context = {
+                        'username': "旅行团"
+                    }
                     return render(request, 'booksystem/result.html', context)
     context = {
         "form": form,
@@ -249,6 +249,8 @@ def register(request):
     return render(request, 'booksystem/register.html', context)
 
 
+def tourgroup(request):
+    return render(request, 'booksystem/tourgroup.html')
 
 
 # 搜索结果页面
