@@ -1,5 +1,24 @@
-from django.contrib.auth.models import Permission, User
+# from django.contrib.auth.models import Permission, User
+# import django.contrib.auth.models
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+
+
+class User(AbstractUser):
+    # username = models.CharField(max_length=20, primary_key=True)
+    # password = models.CharField(max_length=30)
+    # email = models.EmailField()
+    # phone = models.CharField(max_length=15)
+    pid = models.IntegerField(default=1)  # 权限 ID
+
+    # def set_password(self, psw):
+    #     self.password = psw
+    #
+    # def check_password(self, psw):
+    #     if psw == self.password:
+    #         return True
+    #     else:
+    #         return False
 
 
 # Create your models here.

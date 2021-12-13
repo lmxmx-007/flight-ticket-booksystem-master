@@ -18,7 +18,7 @@ from django.contrib import admin
 from booksystem import views
 
 urlpatterns = [
-    url(r'^booksystem/admin/', admin.site.urls),
+    # url(r'^booksystem/admin/', admin.site.urls),
     url(r'^booksystem/admin/finance', views.admin_finance, name='admin_finance'),  # 财务管理
     url(r'^booksystem/', include('booksystem.urls')),
     url(r'', include('booksystem.urls')),

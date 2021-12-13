@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
-from .forms import PassengerInfoForm, UserForm
-from .models import Flight
+from .forms import PassengerInfoForm, UserForm,FlightForm
+from .models import Flight,User
 from .classes import IncomeMetric, Order
-from django.contrib.auth.models import Permission, User
+# from django.contrib.auth.models import Permission, User
 import datetime, pytz
 from operator import attrgetter
 
@@ -92,6 +92,24 @@ def admin_finance(request):
     return context
 
 
+# 管理员添加航班
+def admin(request):
+
+    if request.method == 'POST':
+        form = FlightForm(request.POST)  # 绑定数据至表单
+        if form.is_valid():
+            flight = form.save(commit=False)
+            flight.save()
+            return render(request, 'booksystem/admin.html')
+        else:
+            print("无效！")
+            return render(request, 'booksystem/admin.html')
+
+    else:
+        return render(request, 'booksystem/admin.html')
+
+
+
 # 显示用户订单信息
 # 航班信息，退票管理
 def user_info(request):
@@ -99,7 +117,7 @@ def user_info(request):
         # 如果用户是管理员，render公司航班收入统计信息页面 admin_finance
         if request.user.id == ADMIN_ID:
             context = admin_finance(request)  # 获取要传入前端的数据
-            return render(request, 'booksystem/admin_finance.html', context)
+            # return render(request, 'booksystem/admin_finance.html', context)
         # 如果用户是普通用户，render用户的机票信息 user_info
         else:
             booked_flights = Flight.objects.filter(user=request.user)  # 从 booksystem_flight_user 表过滤出该用户订的航班
@@ -183,10 +201,16 @@ def login_user(request):
                     'username': request.user.username
                 }
                 if user.id == ADMIN_ID:
-                    context = admin_finance(request)  # 获取要传入前端的数据
-                    return render(request, 'booksystem/admin_finance.html', context)
+                    # context = admin_finance(request)  # 获取要传入前端的数据
+                    return render(request, 'booksystem/admin.html')
                 else:
-                    return render(request, 'booksystem/result.html', context)
+                    if user.pid==1:
+                        return render(request, 'booksystem/result.html', context)
+                    else:
+                        # context = {
+                        #     'username': "旅行团"
+                        # }
+                        return render(request, 'booksystem/result.html', context)
             else:
                 return render(request, 'booksystem/login.html', {'error_message': 'Your account has been disabled'})
         else:  # 登录失败
@@ -194,9 +218,11 @@ def login_user(request):
     return render(request, 'booksystem/login.html')
 
 
+
 # 注册
 def register(request):
     form = UserForm(request.POST or None)
+
     if form.is_valid():
         user = form.save(commit=False)
         username = form.cleaned_data['username']
@@ -210,11 +236,19 @@ def register(request):
                 context = {
                     'username': request.user.username
                 }
-                return render(request, 'booksystem/result.html', context)  # 注册成功直接render result页面
+                if user.pid == 1:
+                    return render(request, 'booksystem/result.html', context) # 注册成功直接render result页面
+                else:
+                    # context = {
+                    #     'username': "旅行团"
+                    # }
+                    return render(request, 'booksystem/result.html', context)
     context = {
         "form": form,
     }
     return render(request, 'booksystem/register.html', context)
+
+
 
 
 # 搜索结果页面

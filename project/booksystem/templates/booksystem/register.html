@@ -12,7 +12,50 @@
                         </center>
                         <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
-                            {% include 'booksystem/form_template.html' %}
+<!--                            {% include 'booksystem/form_template.html' %}-->
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ form.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-6" for="id_username">Username:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="username" maxlength="150" required="" id="id_username">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ form.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-6" for="id_email">Email address:</label>
+                                <div class="col-sm-6">
+                                    <input type="email" name="email" maxlength="254" id="id_email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ form.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-6" for="id_password">Password:</label>
+                                <div class="col-sm-6">
+                                    <input type="password" name="password" maxlength="254" id="id_password">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <span class="text-danger small">{{ form.errors }}</span>
+                                </div>
+                                <label class="control-label col-sm-6" for="id_pid">Pid:</label>
+                                <div class="col-sm-6">
+                                    <select name="pid" id="id_pid">
+                                    <option value="1">旅客</option>
+                                    <option value="2">旅行团</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div align="center">
                                     <button type="submit" class="btn btn-success">Submit</button>

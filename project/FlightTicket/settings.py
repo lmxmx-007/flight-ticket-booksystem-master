@@ -114,3 +114,8 @@ USE_TZ = False  # 设为False，避免时间不对应
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'booksystem.User'
+
+# 不自动关联is_active属性
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']

@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Flight
+# from django.contrib.auth.models import User
+from .models import Flight,User
 
 
 class PassengerInfoForm(forms.Form):
@@ -13,7 +13,7 @@ class PassengerInfoForm(forms.Form):
 class FlightForm(forms.ModelForm):
     class Meta:
         model = Flight
-        exclude = ['user']  # user信息不能从后台输入
+        exclude = ['user', 'book_sum', 'income']  # user信息不能从后台输入
 
 
 # 用户需要输入的字段
@@ -22,4 +22,4 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'password', 'pid']
