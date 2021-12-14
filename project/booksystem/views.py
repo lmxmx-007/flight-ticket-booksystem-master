@@ -188,10 +188,24 @@ def logout_user(request):
 
 # 登录
 def login_user(request):
+    if request.user.is_authenticated:
+        if request.user.id == ADMIN_ID:
+            # context = admin_finance(request)  # 获取要传入前端的数据
+            return render(request, 'booksystem/admin.html')
+        else:
+            if request.user.pid == 1:
+                return render(request, 'booksystem/result.html', context)
+            else:
+                # context = {
+                #     'username': "旅行团"
+                # }
+                return render(request, 'booksystem/result.html', context)
+
     if request.method == "POST":
         username = request.POST.get('username', False)
         password = request.POST.get('password', False)
         user = authenticate(username = username, password = password)
+
         if user is not None:  # 登录成功
             if user.is_active:  # 加载订票页面
                 login(request, user)
