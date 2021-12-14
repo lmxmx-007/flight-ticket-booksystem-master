@@ -196,10 +196,11 @@ def login_user(request):
             if request.user.pid == 1:
                 return render(request, 'booksystem/result.html', context)
             else:
-                # context = {
-                #     'username': "旅行团"
-                # }
-                return render(request, 'booksystem/result.html', context)
+                context = {
+                    'username': "旅行团"
+                }
+                # print("旅行团")
+                return render(request, 'booksystem/tourgroup.html')
 
     if request.method == "POST":
         username = request.POST.get('username', False)
@@ -219,10 +220,11 @@ def login_user(request):
                     if user.pid == 1:
                         return render(request, 'booksystem/result.html', context)
                     else:
-                        # context = {
-                        #     'username': "旅行团"
-                        # }
-                        return render(request, 'booksystem/result.html', context)
+                        context = {
+                            'username': "旅行团"
+                        }
+                        # print("旅行团")
+                        return render(request, 'booksystem/tourgroup.html')
             else:
                 return render(request, 'booksystem/login.html', {'error_message': 'Your account has been disabled'})
         else:  # 登录失败
@@ -250,9 +252,9 @@ def register(request):
                 if user.pid == 1:
                     return render(request, 'booksystem/result.html', context)  # 注册成功直接render result页面
                 else:
-                    # context = {
-                    #     'username': "旅行团"
-                    # }
+                    context = {
+                        'username': "旅行团"
+                    }
                     return render(request, 'booksystem/result.html', context)
     context = {
         "form": form,
@@ -342,3 +344,5 @@ def result(request):
             'dis_search_failure': 'none'
         }
     return render(request, 'booksystem/result.html', context)
+def tourgroup(request):
+    return render(request, 'booksystem/tourgroup.html')
