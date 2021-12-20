@@ -3,149 +3,169 @@
 {% block style %}
 <style xmlns="http://www.w3.org/1999/html">
 
-        .main {
-            margin-left: 50px;
-            margin-right: 50px;
-        }
+    .main {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 
-        .search_form {
-            background-color: white;
-            margin-top: 25px;
-            height: 90px;
-        }
+    .search_form {
+        background-color: white;
+        margin-top: 25px;
+        height: 90px;
+    }
 
-        .search_head {
-            background-color: #f1f1f1;
-            margin-top: 10px;
-            height: 30px;
-            text-align: center;
-            font-weight: bold;
-        }
+    .search_head {
+        background-color: #f1f1f1;
+        margin-top: 10px;
+        height: 30px;
+        text-align: center;
+        font-weight: bold;
+    }
 
-        .search_result_by_ltime { /*背景色与网页背景色相同*/
-            background-color: #f1f1f1;
-            margin-top: 10px;
-        }
+    .search_result_by_ltime { /*背景色与网页背景色相同*/
+        background-color: #f1f1f1;
+        margin-top: 10px;
+    }
 
-        .search_result_by_price { /*背景色与网页背景色相同*/
-            background-color: #f1f1f1;
-            margin-top: 10px;
-        }
+    .search_result_by_price { /*背景色与网页背景色相同*/
+        background-color: #f1f1f1;
+        margin-top: 10px;
+    }
 
-        .one_line {
-            background-color: white;
-            height: 90px;
-            margin-top: 10px;
-            text-align: center;
-        }
+    .one_line {
+        background-color: white;
+        height: 90px;
+        margin-top: 10px;
+        text-align: center;
+    }
 
-        .ico_search_type {
-            display: inline-block; /*同行显示*/
-            width: 20px;
-            height: 20px;
-            background: url('http://pic.c-ctrip.com/flight/searchlist/icon_search_select.png') no-repeat;
-        }
+    .ico_search_type {
+        display: inline-block; /*同行显示*/
+        width: 20px;
+        height: 20px;
+        background: url('http://pic.c-ctrip.com/flight/searchlist/icon_search_select.png') no-repeat;
+    }
 
-        .ico_search_lcity {
-            background-position: 0 0;
-        }
+    .ico_search_lcity {
+        background-position: 0 0;
+    }
 
-        .ico_search_acity {
-            background-position: 0 -20px;
-        }
+    .ico_search_acity {
+        background-position: 0 -20px;
+    }
 
-        .ico_search_ldate {
-            background-position: 0 -40px;
-        }
+    .ico_search_ldate {
+        background-position: 0 -40px;
+    }
 
-        .my_input {
-            position: absolute;
-            width: 80%;
-        }
+    .my_input {
+        position: absolute;
+        width: 80%;
+    }
 
-        .btn-warning {
-            background-color: #ffb000;
-        }
+    .btn-warning {
+        background-color: #ffb000;
+    }
 
-        .flight_name {
-            line-height: 90px;
-            font-size: x-large;
-            font-weight: bold;
-        }
+    .flight_name {
+        line-height: 90px;
+        font-size: x-large;
+        font-weight: bold;
+    }
 
 
 </style>
 {% endblock %}
 
-
 {% block content %}
-        <div class="main">
-            <div class="search_form">
-<!--                <div class="col-sm-12" style="margin-top: 20px">-->
-                    <form action="{% url 'booksystem:user_admin' %}" method="post">
-                        {% csrf_token %}
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_name"></span><br>-->
-                            <input class="my_input" type="text" id="name" name="name" placeholder="FlightId"
-                                   value="{{ name }}">
-                        </div>
+<div class="border border-primary rounded">
+    <div class="container" style="margin-top: 20px">
 
-                        <div class="col-sm-3"> {# 在父div中要指定width:100%才会一样宽 #}
-<!--                            <span class="ico_search_type ico_search_lcity"></span><br>-->
-                            <input class="my_input" type="text" id="leave_city" name="leave_city" placeholder="City"
-                                   value="{{ leave_city }}">
-                        </div>
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_acity"></span><br>-->
-                            <input class="my_input" type="text" id="arrive_city" name="arrive_city" placeholder="City"
-                                   value="{{ arrive_city }}">
-                        </div>
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_lairport"></span><br>-->
-                            <input class="my_input" type="text" id="leave_airport" name="leave_airport" placeholder="airport"
-                                   value="{{ leave_airport }}">
-                        </div>
+        <!--                <div class="col-sm-12" style="margin-top: 20px">-->
+        <form action="{% url 'booksystem:user_admin' %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_name"></span><br>-->
+                    <label for="name">航班名称</label>
+                    <input class="form-control" type="text" id="name" name="name" placeholder="FlightId"
+                           value="{{ name }}">
+                </div>
 
-                        <br>
+                <div class="col-sm-4"> {# 在父div中要指定width:100%才会一样宽 #}
+                    <!--                            <span class="ico_search_type ico_search_lcity"></span><br>-->
+                    <label for="leave_city">离开城市</label>
+                    <input class="form-control" type="text" id="leave_city" name="leave_city" placeholder="City"
+                           value="{{ leave_city }}">
+                </div>
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_acity"></span><br>-->
+                    <label for="arrive_city">到达城市</label>
+                    <input class="form-control" type="text" id="arrive_city" name="arrive_city" placeholder="City"
+                           value="{{ arrive_city }}">
+                </div>
 
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_aairport"></span><br>-->
-                            <input class="my_input" type="text" id="arrive_airport" name="arrive_airport" placeholder="airport"
-                                   value="{{ arrive_airport }}">
-                        </div>
-
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_ldate"></span><br>-->
-                            <input class="my_input" type="datetime-local" id="leave_time" name="leave_time" placeholder="Date"
-                                   value="{{ leave_time }}">
-                        </div>
-
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_adate"></span><br>-->
-                            <input class="my_input" type="datetime-local" id="arrive_time" name="arrive_time" placeholder="Date"
-                                   value="{{ arrive_time }}">
-                        </div>
-
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_capacity"></span><br>-->
-                            <input class="my_input" type="number" id="capacity" name="capacity" placeholder="Capacity"
-                                   value="{{ capacity }}">
-                        </div>
-
-                        <br>
-
-                        <div class="col-sm-3">
-<!--                            <span class="ico_search_type ico_search_price"></span><br>-->
-                            <input class="my_input" type="number" id="price" name="price" placeholder="Price"
-                                   value="{{ price }}">
-                        </div>
-                        <div class="col-sm-3">
-                            <div style="position: absolute;margin-top: 10px;margin-left: 35%">
-                                <input class="btn btn btn-info" name="research_btn" type="submit" value="添加航班">
-                            </div>
-                        </div>
-                    </form>
-<!--                </div>-->
             </div>
-        </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_lairport"></span><br>-->
+                    <label for="leave_airport">离开机场</label>
+                    <input class="form-control" type="text" id="leave_airport" name="leave_airport"
+                           placeholder="airport"
+                           value="{{ leave_airport }}">
+                </div>
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_aairport"></span><br>-->
+                    <label for="arrive_airport">到达机场</label>
+                    <input class="form-control" type="text" id="arrive_airport" name="arrive_airport"
+                           placeholder="airport"
+                           value="{{ arrive_airport }}">
+                </div>
+
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_ldate"></span><br>-->
+                    <label for="leave_time">离开时间</label>
+                    <input class="form-control" type="datetime-local" id="leave_time" name="leave_time"
+                           placeholder="Date"
+                           value="{{ leave_time }}">
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_adate"></span><br>-->
+                    <label for="arrive_time">到达时间</label>
+                    <input class="form-control" type="datetime-local" id="arrive_time" name="arrive_time"
+                           placeholder="Date"
+                           value="{{ arrive_time }}">
+                </div>
+
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_capacity"></span><br>-->
+                    <label for="capacity">总人数</label>
+                    <input class="form-control" type="number" id="capacity" name="capacity" placeholder="Capacity"
+                           value="{{ capacity }}">
+                </div>
+                <div class="col-sm-4">
+                    <!--                            <span class="ico_search_type ico_search_price"></span><br>-->
+                    <label for="price">价格</label>
+                    <input class="form-control" type="number" id="price" name="price" placeholder="Price"
+                           value="{{ price }}">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <!--
+                    <div style="position: absolute;margin-top: 10px;margin-left: 35%">-->
+                    <div style="text-align: center;margin-top: 10px">
+                        <input class="btn btn btn-info" name="research_btn" type="submit" value="添加航班">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--                </div>-->
+</div>
 {% endblock %}
