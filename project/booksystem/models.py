@@ -21,6 +21,9 @@ class User(AbstractUser):
     #         return False
 
 
+
+
+
 # Create your models here.
 # 添加primary_key会覆盖掉默认的主键
 class Flight(models.Model):
@@ -39,3 +42,9 @@ class Flight(models.Model):
 
     def __str__(self):
         return self.name
+
+class Group(models.Model):
+    id = models.AutoField(primary_key=True)
+    name=models.CharField(max_length=64,null=False,unique=True)
+    users = models.ManyToManyField(User, default=1)  # 一个旅行团拥有多个用户，一个用户可以加入多个旅行团
+    flight=models.ManyToManyField(Flight,default=1)  # 一个旅行团能订多辆航班，一辆航班可以被多个旅行团预订

@@ -31,5 +31,11 @@ urlpatterns = [
     url(r'^book/flight/(?P<flight_id>[0-9]+)/$', views.book_ticket, name='book_ticket'),  # 订票
     url(r'^refund/flight/(?P<flight_id>[0-9]+)/$', views.refund_ticket, name='refund_ticket'),  # 退票
     url(r'^admin/$', views.admin, name='user_admin'),
-    url(r'^tourgroup/$',views.tourgroup,name='tourgroup')
+    url(r'^tourgroup/$',views.tourgroup,name='tourgroup'),
+    url(r'^group_result/$',views.result_group,name='result_group'),
+    url(r'^group_manage/$',views.group_manage,name='group_manage'),
+    url(r'^group_book/flight/(?P<flight_id>[0-9]+)/$',views.group_book,name='group_book'),
+    url(r'^group_refund/flight/(?P<flight_id>[0-9]+)/$',views.group_refund,name='group_refund'),
+    url(r'^group_info/$',views.group_info,name='group_info'),
+    url(r'^group_remove_member/(?P<member_id>[0-9]+)/$',views.group_remove_member,name='group_remove_member')
 ]

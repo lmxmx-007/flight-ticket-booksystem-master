@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>旅行团</title>
-</head>
-<body>
-<h1>旅行团页面</h1>
-</body>
-</html>
+{% extends 'booksystem/base.html' %}
+
+{% block style %}
+<style xmlns="http://www.w3.org/1999/html">
+</style>
+{% endblock %}
+
+
+{% block content %}
+        <div class="main">
+            <div class="search_form">
+<!--                <div class="col-sm-12" style="margin-top: 20px">-->
+                <a href="{% url 'booksystem:group_manage' %}" class="btn btn-danger" style="width: 80px" onclick="">旅行团信息管理</a>
+                <a href="{% url 'booksystem:result_group' %}" class="btn btn-danger" style="width: 80px" onclick="">旅行团订购机票</a>
+                <a href="{% url 'booksystem:group_info' %}" class="btn btn-danger" style="width: 80px" onclick="">旅行团机票查询</a>
+
+<!--                </div>-->
+            </div>
+        </div>
+{% endblock %}
